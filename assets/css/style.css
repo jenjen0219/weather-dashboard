@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+
+}
+
+.containerLeftEl {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-left: 50px;
+    align-content: space-evenly;
+    padding-left: 20px;
+    margin-right: 20%;
+}
+
+/* #searchCityEl {} */
+#containerRightEl {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.searchButton {
+
+    width: 300px !important;
+
+}

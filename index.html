@@ -1,18 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link src="./assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>Document</title>
 </head>
+
 <body>
     <!-- so there are 5 major components to thie website; the header, the search bar, the current weather, 5 day forecast, and then the list of buttons -->
-    <header id="mainTitleEl"> Weather DashBoard</header>
+    <header class=" m-5" id="mainTitleEl">
+        <h1 class="title has-text-centered">Weather Dashboard</h1>
+    </header>
 
-<!-- for the search bar i am going to need a title, input box, and then a button -->
-<!-- i also want this section above the one with our buttons for the city, so we will contain them both within the same div -->
-<!-- since that will help us with styling -->
-<!-- making these edits for testt -->
+    <div class="columns is-centered">
+        <div class="column is-narrow">
+            <div class=" m-5 is-grouped-centered" style="width: 500px;">
+                <form id="searchCityEl" class="is-centered m-auto">
+                    <label style="display:block; text-align: center" class="block " for="cityName"> Search For A
+                        City:
+                    </label>
+                    <input class="input is-rounded block" type="text" id="cityName" name="cityName"
+                        placeholder="Enter City Name" value="">
+                    <div class="container">
+                        <button style="display:block; margin:0 auto" class="button has-text-centered is-2"
+                            id="searchButton"> Search
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <section class="column is-one-third is-centered buttons m-auto" id="cityHistoryEl">
+                <button class="button is-fullwidth" class="searchButton"> Los Angeles </button>
+
+                <button class="button is-fullwidth" class=" searchButton"> Seattle </button>
+                <button class="button is-fullwidth" class="searchButton"> Philadelphia </button>
+                <button class="button is-fullwidth" class="searchButton"> Search </button>
+
+
+            </section>
+        </div>
+
+        <div class="column">
+            <div class="box">
+                <section class="card-content section" id="currentWeatherEl">
+                    <h1 class="title">Wenatchee</h1>
+                    <h2 class="sub-title">Humidity: </h2>
+                    <h2 class="sub-title">Wind Speed: </h2>
+                    <h2 class="sub-title">Temp: </h2>
+
+                </section>
+                
+                <section id="futureWeatherEl">
+
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- for the search bar i am going to need a title, input box, and then a button -->
+
+
+
+
 </body>
+
 </html>
