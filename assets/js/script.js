@@ -12,4 +12,4 @@ console.log(queryURL);
 
 // forecast.humidity.value
 
-http://api.openweathermap.org/data/2.5/weather?q=seattle&appid=4ef3772979be6dce53798914fca77969
+//http://api.openweathermap.org/data/2.5/weather?q=seattle&appid=4ef3772979be6dce53798914fca77969
