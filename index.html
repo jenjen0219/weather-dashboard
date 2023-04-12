@@ -15,58 +15,64 @@
     <header class=" m-5" id="mainTitleEl">
         <h1 class="title has-text-centered">Weather Dashboard</h1>
     </header>
-
-    <div class="columns is-centered">
-        <div class="column is-narrow">
-            <div class=" m-5 is-grouped-centered" style="width: 500px;">
-                <form id="searchCityEl" class="is-centered m-auto">
-                    <label style="display:block; text-align: center" class="block " for="cityName"> Search For A
-                        City:
+    <section class="columns">
+        <div class="column is-one-third is-3 is-centered">
+            <section class="m-3">
+                <form id="searchCityEl" class="is-centered ">
+                    <label style="display:block; text-align: center" class="block " for="cityName">
+                        Search For A City:
                     </label>
                     <input class="input is-rounded block" type="text" id="cityName" name="cityName"
                         placeholder="Enter City Name">
                     <div class="container">
-                        <button style="display:block; margin:0 auto" class="button has-text-centered is-2"
-                            id="searchButton"> Search
+                        <button class="button has-text-centered is-2 is-fullwidth" id="searchButton"> Search
                         </button>
                     </div>
                 </form>
-            </div>
+            </section>
 
-            <section class="column is-one-third is-centered buttons m-auto" id="cityHistoryEl">
+            <section class="column is-centered buttons m-auto" id="cityHistoryEl">
+                <label style="display:block; text-align: center" class="block " for="cityName">
+                    Quick City Lookup
+                </label>
                 <button class="button is-fullwidth" class="searchButton"> Los Angeles </button>
 
                 <button class="button is-fullwidth" class=" searchButton"> Seattle </button>
                 <button class="button is-fullwidth" class="searchButton"> Philadelphia </button>
-                <button class="button is-fullwidth" class="searchButton"> Search </button>
+            </section>
 
+            <section class="column is-centered buttons m-auto">
+                <button class="button is-fullwidth" class="searchButton"> Clear </button>
 
             </section>
         </div>
-
-        <div class="column">
-            <div class="box">
-                <section class="card-content section" id="currentWeatherEl">
-                    <h1 class="title">Wenatchee</h1>
-                    <h2 class="sub-title">Humidity: </h2>
-                    <h2 class="sub-title">Wind Speed: </h2>
-                    <h2 class="sub-title">Temp: </h2>
-
-                </section>
-                
-                <section id="futureWeatherEl">
-
-                </section>
-
-            </div>
         </div>
-    </div>
+        </div>
+        <section class=" column auto">
+            <div class="column">
+                <div class="box">
+                    <section class="card-content section" id="currentWeatherEl">
+                        <h1 class="title">Wenatchee</h1>
+                        <h2 class="sub-title">Humidity: </h2>
+                        <h2 class="sub-title">Wind Speed: </h2>
+                        <h2 class="sub-title"></h2>
+
+                    </section>
+
+                    <section id="futureWeatherEl">
+
+                    </section>
+
+                </div>
+            </div>
+        </section>
+    </section>
 
     <!-- for the search bar i am going to need a title, input box, and then a button -->
 
 
 
-<script src="./assets/js/script.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
