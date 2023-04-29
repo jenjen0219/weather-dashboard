@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link src="./assets/css/style.css" />
+    <link href="./assets/css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>Document</title>
 </head>
@@ -13,10 +13,14 @@
 <body>
     <!-- so there are 5 major components to thie website; the header, the search bar, the current weather, 5 day forecast, and then the list of buttons -->
     <header class=" m-5" id="mainTitleEl">
-        <h1 class="title has-text-centered">Weather Dashboard</h1>
+        <div>
+            <h1 class="title has-text-centered">Weather Dashboard</h1>
+        </div>
+
+
     </header>
-    <section class="columns">
-        <div class="column is-one-third is-3 is-centered">
+    <section class="columns main-section">
+        <div class="column  is-3 is-centered">
             <section class="m-3">
                 <form id="searchCityEl" class="is-centered ">
                     <label style="display:block; text-align: center" class="block " for="cityName">
@@ -41,36 +45,85 @@
                 <button class="button is-fullwidth" class="searchButton"> Philadelphia </button>
             </section>
 
-            <section class="column is-centered buttons m-auto">
+            <section class="column is-centered buttons m-auto flex-end">
                 <button class="button is-fullwidth" class="searchButton"> Clear </button>
 
             </section>
         </div>
-        </div>
-        </div>
-        <section class=" column auto">
-            <div class="column">
-                <div class="box">
-                    <section class="card-content section" id="currentWeatherEl">
-                        <h1 class="title">Wenatchee</h1>
-                        <h2 class="sub-title">Humidity: </h2>
-                        <h2 class="sub-title">Wind Speed: </h2>
-                        <h2 class="sub-title"></h2>
 
-                    </section>
+        <section class=" column auto col-1 ">
+            <section class="row box">
+                <!-- <div class="box"> -->
+                <section class="card-content section" id="currentWeatherEl">
+                    <h1 class="title">Wenatchee</h1>
+                    <img id="weatherIcon" src="" alt="Weather Icon" />
+                    <p id="weatherIconDescription"></p>
+                    <p id="humidityEl" class="sub-title">Humidity: </p>
+                    <p id="windEl" class="sub-title">Wind Speed: </p>
+                    <p class="sub-title"></p>
 
-                    <section id="futureWeatherEl">
+                </section>
 
-                    </section>
+                <section id="futureWeatherEl">
+
+                </section>
 
                 </div>
-            </div>
+            </section>
+            <!-- 5 day forecast section -->
+            <section class="row box ">
+
+                <section class="card-content section container-fluid" id="fiveDayForecast">
+                    <h1 class="title">5 Day Forecast: </h1>
+                    <section class="columns hide">
+                        <section class="column box">
+                            <p class="sub-title">Date </p>
+                            <p class="sub-title">icon of weather type </p>
+                            <p class="sub-title"> temp: </p>
+                            <p class="sub-title"> wind: </p>
+                            <p class="sub-title"> humidity(%): </p>
+                        </section>
+                        <section class="column box">
+                            <h2 class="sub-title">Date </h2>
+                            <h2 class="sub-title">icon of weather type </h2>
+                            <h2 class="sub-title"> temp: </h2>
+                            <h2 class="sub-title"> wind: </h2>
+                            <h2 class="sub-title"> humidity(%): </h2>
+                        </section>
+                        <section class="column box">
+                            <h2 class="sub-title">Date </h2>
+                            <h2 class="sub-title">icon of weather type </h2>
+                            <h2 class="sub-title"> temp: </h2>
+                            <h2 class="sub-title"> wind: </h2>
+                            <h2 class="sub-title"> humidity(%): </h2>
+                        </section>
+                        <section class="column box">
+                            <h2 class="sub-title">Date </h2>
+                            <h2 class="sub-title">icon of weather type </h2>
+                            <h2 class="sub-title"> temp: </h2>
+                            <h2 class="sub-title"> wind: </h2>
+                            <h2 class="sub-title"> humidity(%): </h2>
+                        </section>
+                        <section class="column box">
+                            <h2 class="sub-title">Date </h2>
+                            <h2 class="sub-title">icon of weather type </h2>
+                            <h2 class="sub-title"> temp: </h2>
+                            <h2 class="sub-title"> wind: </h2>
+                            <h2 class="sub-title"> humidity(%): </h2>
+                        </section>
+                    </section>
+                </section>
+                <section id="futureWeatherEl">
+                </section>
+            </section>
         </section>
+
+
+
+
     </section>
 
     <!-- for the search bar i am going to need a title, input box, and then a button -->
-
-
 
     <script src="./assets/js/script.js"></script>
 </body>

@@ -1,6 +1,5 @@
 * {
     box-sizing: border-box;
-
 }
 
 .containerLeftEl {
@@ -18,10 +17,20 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    width: auto;
 }
 
 .searchButton {
 
     width: 300px !important;
 
+}
+
+.hide {
+    display: none !important;
+}
+
+.main-section {
+    background-color: #BFC99A;
+    height: 100vh;
 }
