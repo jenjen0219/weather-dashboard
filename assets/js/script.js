@@ -8,10 +8,8 @@ var weatherIconDescription = document.getElementById('weatherIconDescription');
 var tempEl = document.getElementById('tempEl');
 var forecastCardParent = document.getElementById('forecast-cards');
 var userSearchHistory = JSON.parse(localStorage.getItem('history')) || [];
-
+var recentSearchBtn = document.getElementById('recentSearchButtons');
 const fiveDayObject = [];
-// var queryURLForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
-
 
 // target form elements
 var searchFormBtn = document.getElementById("searchCityEl")
@@ -19,10 +17,9 @@ var userInput = document.getElementById('cityName');
 
 function handleUserInput(event) {
     console.log('submit');
-    event.preventDefault()
-    getLatAndLon(userInput.value)
-
-    //getOneCallWeather(userInput.value)
+    event.preventDefault();
+    getLatAndLon(userInput.value);
+    createBtns();
 }
 
 
@@ -102,7 +99,7 @@ function fiveDayForecast(lat, lon) {
                 month: '2-digit',
                 day: '2-digit'
             }).replace(/\//g, '-');
-            var cardIconCode = fiveDayObject[i].weather[0].icon;
+            var cardIconCode = `${fiveDayObject[i].weather[0].icon}`;
 
             cardDate.textContent = dateString;
             cardIcon.src = 'https://openweathermap.org/img/wn/' + cardIconCode + '@2x.png'
@@ -118,23 +115,29 @@ function fiveDayForecast(lat, lon) {
             card.appendChild(cardTemp);
             card.appendChild(cardWind);
             forecastCardParent.appendChild(card);
-
         }
-
     })
-
-}
+};
 
 function cityHistory(cityName) {
     userSearchHistory.push(cityName);
     localStorage.setItem('history', JSON.stringify(userSearchHistory));
-    createBtns()
-}
+    // createBtns()
+};
 
 function createBtns() {
-    // run a forloop that will take the length of the userSearch history. Have it create a button for every item inside the array. append that item to the element with the id forecast-cards
+    //so lets think this out, when a user submits their city entry, we need that entry to then become a button within the recent search history column. Of which are being logged into the localStorage. From here, when a button is selected, it should trigger the weather forecast for that specific city. So what im thinking is that the button will contain an object of sorts that will house the lat, lon of the city it corresponds to so that when its selected it has the proper information to trigger the api call. 
 
-}
+    const recentSearch = document.createElement('button');
+
+    recentSearch.className = 'button is-fullwidth';
+
+    recentSearch.textContent = userInput.value;
+
+    recentSearchBtn.appendChild(recentSearch);
+
+
+};
 
 
 searchFormBtn.addEventListener('submit', handleUserInput)
