@@ -57,7 +57,7 @@ function getCallWeather(lat, lon) {
         humidityEl.textContent = `Humidity: ${data.main.humidity}%`;
         windEl.textContent = `Wind Speed: ${data.wind.speed} mph`;
         weatherIcon.src = 'https://openweathermap.org/img/wn/' + iconCode + '@2x.png';
-        tempEl.textContent = `Temperature: ${data.main.temp}`
+        tempEl.textContent = `Temperature: ${data.main.temp} °F`
 
     })
 }
@@ -67,7 +67,6 @@ function fiveDayForecast(lat, lon) {
     fetch(queryURL).then(function (response) {
         return response.json()
     }).then(function (data) {
-        // var iconCode = data.current.weather[0].icon;
         console.log(data);
 
         //this is going to create an object with all of the data we want
@@ -77,40 +76,49 @@ function fiveDayForecast(lat, lon) {
         }
         console.log(fiveDayObject);
 
-        // weatherIconDescription.textContent = `${data.current.weather[0].description.substring(0, 1).toUpperCase()}${data.current.weather[0].description.substring(1)}`;
-
-        // humidityEl.textContent = 'Humidity: ' + data.current.humidity;
-
-        // windEl.textContent = 'Wind Speed: ' + data.current.wind_speed;
-
-        // weatherIcon.src = 'https://openweathermap.org/img/wn/' + iconCode + '@2x.png';
-
-        // // more assignments of values to textContent properties...
-        // // ...
-        // // ...
-        // document.querySelector('#fiveDayForecast > section').classList.remove("hide");
-
-        //i think it would be easier to make an object of each days information
-
         //this loop is going to create 5 cards
         for (let i = 0; i < 5; i++) {
 
             // create the cards
-            // const cardDate = document.createElement('div');
-            // const cardIcon = document.createElement('div');
-            // const cardDescription = document.createElement('div');
-            // const cardHumidity = document.createElement('div');
-            // const cardWind = document.createElement('div');
-            // const cardTemp = document.createElement('div');
+            const card = document.createElement('section');
+            const cardDate = document.createElement('div');
+            const cardIcon = document.createElement('div');
+            const cardDescription = document.createElement('div');
+            const cardHumidity = document.createElement('div');
+            const cardWind = document.createElement('div');
+            const cardTemp = document.createElement('div');
 
-            // card.className = 'card';
-            // child.textContent = `This is card ${i + 1}`;
+            card.className = 'column box';
+            cardDate.className = 'sub-title';
+            cardIcon.className = 'sub-title';
+            cardDescription.className = 'sub-title';
+            cardHumidity.className = 'sub-title';
+            cardWind.className = 'sub-title';
+            cardTemp.className = 'sub-title';
 
+            //this will grab the date and convert it into the format i want
+            var dateString = new Date(Date.parse(fiveDayObject[i].dt_txt)).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            }).replace(/\//g, '-');
+            var cardIconCode = fiveDayObject[i].weather[0].icon;
 
-            // forecastCardParent.appendChild(child);
-            // add the contents to the cards
+            cardDate.textContent = dateString;
+            cardIcon.src = 'https://openweathermap.org/img/wn/' + cardIconCode + '@2x.png'
+            cardDescription.textContent = `${fiveDayObject[i].weather[0].description.substring(0, 1).toUpperCase()}${fiveDayObject[i].weather[0].description.substring(1)}`;
+            cardHumidity.textContent = `Humidity: ${fiveDayObject[i].main.humidity}%`;
+            cardWind.textContent = `Wind: ${fiveDayObject[i].wind.speed} mph`;
+            cardTemp.textContent = `Temperature: ${fiveDayObject[i].main.temp} °F`;
 
-            // append the cards to the page
+            card.appendChild(cardDate);
+            card.appendChild(cardIcon);
+            card.appendChild(cardDescription);
+            card.appendChild(cardHumidity);
+            card.appendChild(cardTemp);
+            card.appendChild(cardWind);
+            forecastCardParent.appendChild(card);
+
         }
 
     })
