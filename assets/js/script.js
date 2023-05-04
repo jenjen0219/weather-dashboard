@@ -8,6 +8,8 @@ var weatherIconDescription = document.getElementById('weatherIconDescription');
 var tempEl = document.getElementById('tempEl');
 var forecastCardParent = document.getElementById('forecast-cards');
 var userSearchHistory = JSON.parse(localStorage.getItem('history')) || [];
+
+const fiveDayObject = [];
 // var queryURLForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
 
 
@@ -68,6 +70,13 @@ function fiveDayForecast(lat, lon) {
         // var iconCode = data.current.weather[0].icon;
         console.log(data);
 
+        //this is going to create an object with all of the data we want
+        for (let i = 7; i < data.list.length; i += 8) {
+
+            fiveDayObject.push(data.list[i]);
+        }
+        console.log(fiveDayObject);
+
         // weatherIconDescription.textContent = `${data.current.weather[0].description.substring(0, 1).toUpperCase()}${data.current.weather[0].description.substring(1)}`;
 
         // humidityEl.textContent = 'Humidity: ' + data.current.humidity;
@@ -80,13 +89,21 @@ function fiveDayForecast(lat, lon) {
         // // ...
         // // ...
         // document.querySelector('#fiveDayForecast > section').classList.remove("hide");
-        for (let i = 0; i < 5; i++) {
-            // create the cards
-            // const child = document.createElement('div');
-            // const child = document.createElement('div');
-            // const child = document.createElement('div');
 
-            // child.className = 'card';
+        //i think it would be easier to make an object of each days information
+
+        //this loop is going to create 5 cards
+        for (let i = 0; i < 5; i++) {
+
+            // create the cards
+            // const cardDate = document.createElement('div');
+            // const cardIcon = document.createElement('div');
+            // const cardDescription = document.createElement('div');
+            // const cardHumidity = document.createElement('div');
+            // const cardWind = document.createElement('div');
+            // const cardTemp = document.createElement('div');
+
+            // card.className = 'card';
             // child.textContent = `This is card ${i + 1}`;
 
 
