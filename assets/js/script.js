@@ -7,7 +7,10 @@ var windEl = document.getElementById('windEl');
 var weatherIconDescription = document.getElementById('weatherIconDescription');
 var tempEl = document.getElementById('tempEl');
 var forecastCardParent = document.getElementById('forecast-cards');
-var userSearchHistory = JSON.parse(localStorage.getItem('history')) || [];
+
+var userSearchCityName = JSON.parse(localStorage.getItem('cityName')) || [];
+var userSearchCityLat = JSON.parse(localStorage.getItem('lat')) || [];
+var userSearchCityLon = JSON.parse(localStorage.getItem('lon')) || [];
 var recentSearchBtn = document.getElementById('recentSearchButtons');
 const fiveDayObject = [];
 
@@ -15,12 +18,37 @@ const fiveDayObject = [];
 var searchFormBtn = document.getElementById("searchCityEl")
 var userInput = document.getElementById('cityName');
 
+//create buttons dynamically 
+function renderSearchHistoryBtns() {
+    var historyEl = document.querySelector('#recentSearchButtons')
+    historyEl.innerHTML = '';
+    let savedCities = userSearchCityName;
+
+    console.log(savedCities);
+    for (var i = 0; i < savedCities.length; i++) {
+        var city = savedCities[i];
+        var button = document.createElement('button');
+        button.textContent = city;
+        button.className = 'button is-fullwidth';
+        // cities.push(cityName);
+
+
+        historyEl.append(button);
+
+
+    }
+}
+
+
 function handleUserInput(event) {
     console.log('submit');
     event.preventDefault();
     getLatAndLon(userInput.value);
-    createBtns();
+    setCityStorage(userInput.value);
+    userInput.value = '';
+    renderSearchHistoryBtns();
 }
+// renderSearchHistoryBtns();
 
 
 function getLatAndLon(city) {
@@ -32,9 +60,13 @@ function getLatAndLon(city) {
         console.log(data);
         var lon = data[0].lon;
         var lat = data[0].lat;
+        var cityName = data[0].name;
         getCallWeather(lat, lon);
         fiveDayForecast(lat, lon);
-        cityHistory(data[0].name);
+        // createBtns(cityName);
+        setCityStorage(cityName);
+        // renderSearchHistoryBtns(cityName);
+
     })
 }
 
@@ -86,6 +118,7 @@ function fiveDayForecast(lat, lon) {
             const cardTemp = document.createElement('div');
 
             card.className = 'column box';
+            //can a loop be used here to add sub-title? 
             cardDate.className = 'sub-title';
             cardIcon.className = 'sub-title';
             cardDescription.className = 'sub-title';
@@ -119,25 +152,43 @@ function fiveDayForecast(lat, lon) {
     })
 };
 
-function cityHistory(cityName) {
-    userSearchHistory.push(cityName);
-    localStorage.setItem('history', JSON.stringify(userSearchHistory));
-    // createBtns()
+function initSearchHistory() {
+    var storedHistory = localStorage.getItem('search-history');
+    if (storedHistory) {
+        searchHistory = JSON.parse(storedHistory);
+    }
+    renderSearchHistory();
+}
+
+
+function createBtns(cityName) {
+    const cityExists = userSearchCityName.find(city => city === cityName);
+
+    if (cityExists) {
+        return
+    } else {
+        const recentSearch = document.createElement('button');
+
+        recentSearch.className = 'button is-fullwidth';
+        recentSearch.textContent = cityName;
+
+        recentSearchBtn.appendChild(recentSearch);
+        cities.push(cityName);
+    }
 };
 
-function createBtns() {
-    //so lets think this out, when a user submits their city entry, we need that entry to then become a button within the recent search history column. Of which are being logged into the localStorage. From here, when a button is selected, it should trigger the weather forecast for that specific city. So what im thinking is that the button will contain an object of sorts that will house the lat, lon of the city it corresponds to so that when its selected it has the proper information to trigger the api call. 
+function setCityStorage(name) {
+    // this is going to be interesting, how am i going to pass in these variables? i guess i could make it so it equals nothing when this function is taken off??
 
-    const recentSearch = document.createElement('button');
+    userSearchCityName.push(name);
 
-    recentSearch.className = 'button is-fullwidth';
-
-    recentSearch.textContent = userInput.value;
-
-    recentSearchBtn.appendChild(recentSearch);
-
+    localStorage.setItem("cityName", JSON.stringify(userSearchCityName));
 
 };
-
 
 searchFormBtn.addEventListener('submit', handleUserInput)
+recentSearchBtn.addEventListener('click', function (e) {
+    getLatAndLon(e.target.textContent);
+})
+renderSearchHistoryBtns();
+
