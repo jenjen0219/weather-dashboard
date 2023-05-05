@@ -52,7 +52,7 @@ function handleUserInput(event) {
 
 
 function getLatAndLon(city) {
-    var queryURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${APIKey}`;
+    var queryURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${APIKey}`;
 
     fetch(queryURL).then(function (response) {
         return response.json()
